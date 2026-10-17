@@ -1,0 +1,60 @@
+{
+  "date": "Friday, October 16, 2026",
+  "weather": {
+    "location": "West Lafayette, IN",
+    "conditions": "Light rain",
+    "temperature_now": "59°F",
+    "high": "71°F",
+    "low": "46°F",
+    "chance_of_rain": "51%"
+  },
+  "headline_story": {
+    "title": "Ship attack reports near Hormuz reach record high as oil exports slow",
+    "blurb": "BBC Verify found that 12 vessels were struck in a single week, the highest count on record. The attacks are slowing oil exports through one of the world's key shipping routes.",
+    "url": "https://www.bbc.co.uk/news/articles/cmde8dpg8g0no",
+    "source": "BBC News"
+  },
+  "sections": [
+    {
+      "name": "World",
+      "stories": [
+        {
+          "title": "Zelensky rallies EU support as Trump says Ukraine leader 'more difficult to deal with than Putin'",
+          "blurb": "Ahead of a meeting of EU leaders in Brussels, Trump sharply criticized Zelensky. Zelensky is seeking more European backing.",
+          "url": "https://www.bbc.co.uk/news/articles/c58jz174w89ro",
+          "source": "BBC News"
+        },
+        {
+          "title": "US senators call for investigation into Ukraine's Starlink restrictions",
+          "blurb": "Ukraine says temporary speed limits on the Starlink network disrupted its battlefield missions. Senators want to know why they were applied.",
+          "url": "https://www.bbc.co.uk/news/articles/cq398zl8jmvdo",
+          "source": "BBC News"
+        }
+      ]
+    },
+    {
+      "name": "Tech & CS",
+      "stories": [
+        {
+          "title": "RPKI now protects 70% of internet routes",
+          "blurb": "RPKI is a system that helps stop internet traffic from being sent along fake or hijacked routes. Adoption has now passed 70%.",
+          "url": "https://ipinfo.io/blog/rpki-protects-70-internet-routes",
+          "source": "Hacker News"
+        },
+        {
+          "title": "Two-Stack Sliding-Window Aggregation",
+          "blurb": "A blog post on an algorithm technique for computing running results over a moving window of data.",
+          "url": "https://orlp.net/blog/two-stack-sliding-window-aggregation/",
+          "source": "Hacker News"
+        }
+      ]
+    }
+  ],
+  "curveball": {
+    "title": "The Economic Complexity of the Western Roman Empire",
+    "blurb": "A blog post that looks at the Roman economy through the lens of economic complexity. A good one if you like math applied to history.",
+    "url": "https://www.michelecoscia.com/?p=2613",
+    "source": "Hacker News"
+  },
+  "one_thing_to_know": "Placeholder: the agent will write one sentence here that ties the day together."
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Looped In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f6f1e7;
+      --ink: #1a1a1a;
+      --muted: #6b6458;
+      --accent: #8b1e1e;
+      --rule: #cfc6b4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+      line-height: 1.5;
+    }
+    .page { max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .masthead {
+      text-align: center;
+      border-top: 6px double var(--ink);
+      padding-top: 12px;
+    }
+    .masthead h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1.05;
+    }
+    .tagline { font-style: italic; color: var(--muted); margin: 4px 0 12px; }
+
+    .dateline {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 3px double var(--ink);
+      padding: 8px 0;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .source { color: var(--muted); font-size: 0.85rem; font-style: italic; margin: 4px 0 0; }
+
+    .lead { padding: 28px 0; border-bottom: 1px solid var(--rule); }
+    .lead h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      margin: 0 0 10px;
+    }
+    .lead .blurb { font-size: 1.15rem; margin: 0; }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      padding: 28px 0;
+    }
+    .columns section + section { border-left: 1px solid var(--rule); padding-left: 32px; }
+    .columns h3 {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 4px;
+      margin: 0 0 16px;
+    }
+    .story { margin-bottom: 22px; }
+    .story h4 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.25rem;
+      line-height: 1.25;
+      margin: 0 0 6px;
+    }
+    .story p { margin: 0; }
+
+    .curveball {
+      border: 1px solid var(--ink);
+      background: #efe8d8;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+    .curveball h4 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.35rem;
+      margin: 0 0 6px;
+    }
+    .curveball p { margin: 0; }
+
+    .one-thing {
+      text-align: center;
+      border-top: 3px double var(--ink);
+      padding-top: 18px;
+      font-size: 1.15rem;
+      font-style: italic;
+    }
+    .one-thing strong {
+      display: block;
+      font-style: normal;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 700px) {
+      .columns section + section { border-left: none; padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <h1>Looped In</h1>
+      <p class="tagline">Everything you need to know, before you walk out the door.</p>
+    </header>
+
+    <div class="dateline">
+      <span>{{ date }}</span>
+      <span>
+        {{ weather.location }} · {{ weather.conditions }} · {{ weather.temperature_now }}
+        · High {{ weather.high }} / Low {{ weather.low }} · {{ weather.chance_of_rain }} chance of rain
+      </span>
+    </div>
+
+    <article class="lead">
+      <p class="kicker">Top Story</p>
+      <h2><a href="{{ headline_story.url }}" target="_blank" rel="noopener">{{ headline_story.title }}</a></h2>
+      <p class="blurb">{{ headline_story.blurb }}</p>
+      <p class="source">{{ headline_story.source }}</p>
+    </article>
+
+    <div class="columns">
+      {% for section in sections %}
+      <section>
+        <h3>{{ section.name }}</h3>
+        {% for story in section.stories %}
+        <article class="story">
+          <h4><a href="{{ story.url }}" target="_blank" rel="noopener">{{ story.title }}</a></h4>
+          <p>{{ story.blurb }}</p>
+          <p class="source">{{ story.source }}</p>
+        </article>
+        {% endfor %}
+      </section>
+      {% endfor %}
+    </div>
+
+    {% if curveball %}
+    <aside class="curveball">
+      <p class="kicker">The Curveball</p>
+      <h4><a href="{{ curveball.url }}" target="_blank" rel="noopener">{{ curveball.title }}</a></h4>
+      <p>{{ curveball.blurb }}</p>
+      <p class="source">{{ curveball.source }}</p>
+    </aside>
+    {% endif %}
+
+    <footer class="one-thing">
+      <strong>One Thing to Know Today</strong>
+      {{ one_thing_to_know }}
+    </footer>
+
+  </div>
+</body>
+</html>
