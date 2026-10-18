@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin:0;padding:0;background:#f6f1e7;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f1e7;">
+<tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;">
+
+  <tr><td align="center" style="border-top:6px double #1a1a1a;padding:14px 0 4px;">
+    <div style="font-size:46px;font-weight:bold;line-height:1.1;">Looped In</div>
+    <div style="font-style:italic;color:#6b6458;font-size:14px;padding-top:4px;">Everything you need to know, before you walk out the door.</div>
+  </td></tr>
+
+  <tr><td style="border-top:1px solid #1a1a1a;border-bottom:3px double #1a1a1a;padding:8px 0;font-size:12px;letter-spacing:1px;text-transform:uppercase;line-height:1.6;">
+    {{ date }}<br>
+    {{ weather.location }} · {{ weather.conditions }} · {{ weather.temperature_now }} · High {{ weather.high }} / Low {{ weather.low }} · {{ weather.chance_of_rain }} chance of rain
+  </td></tr>
+
+  {% if headline_story %}
+  <tr><td style="padding:24px 0 20px;border-bottom:1px solid #cfc6b4;">
+    <div style="color:#8b1e1e;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;">Top Story</div>
+    <div style="font-size:28px;font-weight:bold;line-height:1.2;padding:6px 0 8px;"><a href="{{ headline_story.url }}" style="color:#1a1a1a;text-decoration:none;">{{ headline_story.title }}</a></div>
+    <div style="font-size:16px;line-height:1.5;">{{ headline_story.blurb }}</div>
+    <div style="font-size:13px;font-style:italic;color:#6b6458;padding-top:4px;">{{ headline_story.source }}</div>
+  </td></tr>
+  {% endif %}
+
+  {% for section in sections %}
+  <tr><td style="padding:22px 0 0;">
+    <div style="color:#8b1e1e;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;border-bottom:2px solid #1a1a1a;padding-bottom:4px;">{{ section.name }}</div>
+    {% for story in section.stories %}
+    <div style="padding-top:14px;">
+      <div style="font-size:19px;font-weight:bold;line-height:1.25;"><a href="{{ story.url }}" style="color:#1a1a1a;text-decoration:none;">{{ story.title }}</a></div>
+      <div style="font-size:15px;line-height:1.5;padding-top:4px;">{{ story.blurb }}</div>
+      <div style="font-size:13px;font-style:italic;color:#6b6458;padding-top:2px;">{{ story.source }}</div>
+    </div>
+    {% endfor %}
+  </td></tr>
+  {% endfor %}
+
+  {% if curveball %}
+  <tr><td style="padding-top:26px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efe8d8;border:1px solid #1a1a1a;">
+    <tr><td style="padding:16px 20px;">
+      <div style="color:#8b1e1e;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;">The Curveball</div>
+      <div style="font-size:20px;font-weight:bold;line-height:1.25;padding:4px 0;"><a href="{{ curveball.url }}" style="color:#1a1a1a;text-decoration:none;">{{ curveball.title }}</a></div>
+      <div style="font-size:15px;line-height:1.5;">{{ curveball.blurb }}</div>
+      <div style="font-size:13px;font-style:italic;color:#6b6458;padding-top:2px;">{{ curveball.source }}</div>
+    </td></tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <tr><td align="center" style="border-top:3px double #1a1a1a;margin-top:24px;padding:18px 0 0;">
+    <div style="color:#8b1e1e;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:bold;padding-bottom:4px;">One Thing to Know Today</div>
+    <div style="font-size:17px;font-style:italic;line-height:1.5;">{{ one_thing_to_know }}</div>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

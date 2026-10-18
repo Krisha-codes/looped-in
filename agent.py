@@ -10,10 +10,11 @@ from google import genai
 from google.genai import types
 from google.genai.errors import ServerError, ClientError
 
+
 from build_page import build_page
 from news_tools import get_headlines, get_hacker_news
 from weather import get_weather
-
+from send_email import send_briefing
 load_dotenv()
 
 BASE = Path(__file__).parent
@@ -202,5 +203,11 @@ if __name__ == "__main__":
 
     path = build_page(briefing)
     print("\nBuilt:", path)
+
+    try:
+        send_briefing(briefing)
+    except Exception as e:
+        print("Email failed:", e)  # the page is already built, so a failed email won't break anything
+
     if "--no-open" not in sys.argv:
         webbrowser.open(path.as_uri())
